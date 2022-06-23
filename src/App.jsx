@@ -1,17 +1,19 @@
+import AppFooter from "./components/AppFooter/AppFooter";
+import AppHeader from "./components/AppHeader/AppHeader";
+import SearchPanel from "./components/SearchPanel/SearchPanel";
+import TodoList from "./components/TodoList/TodoList";
+
 const App = () => {
   return (
     <>
-      <header>My Todo List</header>
+      <AppHeader />
       <main>
         <div>
-          <input type="text" />
-          <ul>
-            <li>Learn React</li>
-            <li>Learn Vue</li>
-          </ul>
+          <SearchPanel />
+          <TodoList />
         </div>
       </main>
-      <footer>2022</footer>
+      <AppFooter />
     </>
   );
 };
