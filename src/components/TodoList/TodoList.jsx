@@ -1,8 +1,14 @@
+import TodoListItem from "../TodoListItem/TodoListItem";
+
 const TodoList = () => {
   return (
     <ul>
-      <li>Learn React</li>
-      <li>Learn Vue</li>
+      <li>
+        <TodoListItem task="Learn React" />
+      </li>
+      <li>
+        <TodoListItem task="Learn Vue" />
+      </li>
     </ul>
   );
 };
