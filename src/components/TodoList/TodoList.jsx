@@ -1,16 +1,14 @@
 import TodoListItem from "../TodoListItem/TodoListItem";
 
-const TodoList = () => {
-  return (
-    <ul>
-      <li>
-        <TodoListItem task="Learn React" />
+const TodoList = ({ todos }) => {
+  const element = todos.map((item) => {
+    return (
+      <li key={item.id}>
+        <TodoListItem task={item.task} />
       </li>
-      <li>
-        <TodoListItem task="Learn Vue" />
-      </li>
-    </ul>
-  );
+    );
+  });
+  return <ul>{element}</ul>;
 };
 
 export default TodoList;
