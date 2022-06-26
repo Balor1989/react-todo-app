@@ -9,7 +9,7 @@ const App = () => {
   const todos = [
     { id: 'id-1', task: 'Learn React' },
     { id: 'id-2', task: 'Learn Vue' },
-    { id: 'id-3', task: 'Learn JavaScript' },
+    { id: 'id-3', task: 'Learn JavaScript', important: true },
     { id: 'id-4', task: 'Learn TypeScript' },
   ];
 
