@@ -1,9 +1,9 @@
-import AppFooter from './components/AppFooter/AppFooter';
-import AppHeader from './components/AppHeader/AppHeader';
-import SearchPanel from './components/SearchPanel/SearchPanel';
-import TodoList from './components/TodoList/TodoList';
+import AppFooter from './components/AppFooter';
+import AppHeader from './components/AppHeader';
+import SearchPanel from './components/SearchPanel';
+import StatusFilter from './components/StatusFilter';
+import TodoList from './components/TodoList';
 import s from './App.module.css';
-import StatusFilter from './components/StatusFilter/StatusFilter';
 
 const App = () => {
   const todos = [

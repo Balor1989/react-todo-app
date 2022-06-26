@@ -3,7 +3,7 @@ import { BsFillTrashFill, BsExclamationLg } from 'react-icons/bs';
 
 const TodoListItem = ({ task, important = false }) => {
   const importantActive = {
-    color: important ? 'tomato' : 'black',
+    color: important ? '#8A2BE2' : '#000',
     fontWeight: important ? 'bold' : 'normal',
   };
 

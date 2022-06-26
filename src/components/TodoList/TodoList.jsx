@@ -1,4 +1,4 @@
-import TodoListItem from '../TodoListItem/TodoListItem';
+import TodoListItem from '../TodoListItem';
 import s from './TodoList.module.css';
 
 const TodoList = ({ todos }) => {
