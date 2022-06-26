@@ -4,7 +4,7 @@ import s from './TodoList.module.css';
 const TodoList = ({ todos }) => {
   const element = todos.map(({ id, task }) => {
     return (
-      <li key={id} className={`list-group-item ${s.todoListItem}`}>
+      <li key={id} className="list-group-item">
         <TodoListItem task={task} />
       </li>
     );
