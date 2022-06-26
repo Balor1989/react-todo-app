@@ -3,6 +3,7 @@ import AppHeader from './components/AppHeader/AppHeader';
 import SearchPanel from './components/SearchPanel/SearchPanel';
 import TodoList from './components/TodoList/TodoList';
 import s from './App.module.css';
+import StatusFilter from './components/StatusFilter/StatusFilter';
 
 const App = () => {
   const todos = [
@@ -18,6 +19,7 @@ const App = () => {
       <main>
         <div className={`d-flex ${s.topPanel}`}>
           <SearchPanel />
+          <StatusFilter />
         </div>
         <TodoList todos={todos} />
       </main>
