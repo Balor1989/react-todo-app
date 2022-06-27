@@ -6,10 +6,14 @@ class TodoListItem extends Component {
   state = { done: false, important: false };
 
   taskHendler = () => {
-    this.setState({ done: true });
+    this.setState(({ done }) => {
+      return { done: !done };
+    });
   };
   importantHandler = () => {
-    this.setState({ important: true });
+    this.setState(({ important }) => {
+      return { important: !important };
+    });
   };
 
   render() {
