@@ -18,7 +18,7 @@ class TodoListItem extends Component {
 
   render() {
     const { done, important } = this.state;
-    const { task } = this.props;
+    const { task, onDeletedTask } = this.props;
 
     let classNames = `${s.task}`;
     if (done) {
@@ -42,7 +42,11 @@ class TodoListItem extends Component {
             <BsExclamationLg />
           </button>
 
-          <button type="button" className="btn btn-outline-danger btn-sm float-right">
+          <button
+            type="button"
+            className="btn btn-outline-danger btn-sm float-right"
+            onClick={onDeletedTask}
+          >
             <BsFillTrashFill />
           </button>
         </div>
