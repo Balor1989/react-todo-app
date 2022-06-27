@@ -3,33 +3,38 @@ import { BsFillTrashFill, BsExclamationLg } from 'react-icons/bs';
 import { Component } from 'react';
 
 class TodoListItem extends Component {
-  state = { done: false };
+  state = { done: false, important: false };
 
   taskHendler = () => {
-    console.log(`click! ${this.props.task}`);
+    this.setState({ done: true });
+  };
+  importantHandler = () => {
+    this.setState({ important: true });
   };
 
   render() {
-    const { done } = this.state;
-    const { task, important = false } = this.props;
+    const { done, important } = this.state;
+    const { task } = this.props;
 
-    let classNames = `${s.task} `;
+    let classNames = `${s.task}`;
     if (done) {
-      classNames += 'text-decoration-line-through';
+      classNames += ' text-decoration-line-through';
     }
-
-    const importantActive = {
-      color: important ? '#8A2BE2' : '#000',
-      fontWeight: important ? 'bold' : 'normal',
-    };
+    if (important) {
+      classNames += ` ${s.important}`;
+    }
 
     return (
       <div className={`d-flex justify-content-between ${s.todoListItem}`}>
-        <p className={classNames} style={importantActive} onClick={this.taskHendler}>
+        <p className={classNames} onClick={this.taskHendler}>
           {task}
         </p>
         <div>
-          <button type="button" className="btn btn-outline-success btn-sm float-right">
+          <button
+            type="button"
+            className="btn btn-outline-success btn-sm float-right"
+            onClick={this.importantHandler}
+          >
             <BsExclamationLg />
           </button>
 

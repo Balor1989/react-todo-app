@@ -8,4 +8,10 @@
 }
 .task {
   cursor: pointer;
+  font-weight: 400;
+  color: #000000;
+}
+.task.important {
+  font-weight: 700;
+  color: #8a2be2;
 }
