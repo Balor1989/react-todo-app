@@ -17,6 +17,7 @@ class App extends Component {
       this.createTodoItem('Learn TypeScript'),
     ],
     search: '',
+    filter: '',
   };
 
   createTodoItem(task) {
@@ -67,21 +68,40 @@ class App extends Component {
     this.setState({ search: e.target.value });
     console.log(e.target.value);
   };
+  filterTask = (todos, filter) => {
+    switch (filter) {
+      case 'all':
+        return todos;
+      case 'active':
+        return todos.filter(todo => !todo.done);
+      case 'done':
+        return todos.filter(todo => todo.done);
+      default:
+        return todos;
+    }
+  };
+
+  useFilterButton = value => {
+    this.setState({
+      filter: value,
+    });
+  };
 
   render() {
-    const { todos, search } = this.state;
+    const { todos, search, filter } = this.state;
 
     const doneCount = todos.filter(task => task.done);
-    const visibleTodos = todos.filter(todo =>
-      todo.task.toLowerCase().includes(search.toLowerCase()),
+    const visibleTodos = this.filterTask(
+      todos.filter(todo => todo.task.toLowerCase().includes(search.toLowerCase())),
+      filter,
     );
     return (
-      <div className={s.todoApp}>
+      <div className={`container-fluid ${s.todoApp}`}>
         <AppHeader todo={todos.length - doneCount.length} done={doneCount.length} />
         <main className={s.mainBox}>
           <div className={`d-flex flex-wrap ${s.topPanel}`}>
             <SearchPanel onSearchTask={this.searchTask} />
-            <StatusFilter />
+            <StatusFilter onUseFilterButton={this.useFilterButton} />
           </div>
           <TodoList
             todos={visibleTodos}

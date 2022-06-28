@@ -1,8 +1,10 @@
 .todoApp {
-  padding: 40px 20px;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 20px;
+  margin: 40px auto auto auto;
+
   max-width: 500px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .topPanel {

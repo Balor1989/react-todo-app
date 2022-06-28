@@ -1,3 +1,9 @@
+body {
+  background-image: url(./img/icon-4139067.svg);
+  background-color: rgb(174, 174, 212);
+  background-size: 30%;
+}
+
 p,
 ul,
 li {
