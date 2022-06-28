@@ -31,19 +31,17 @@ class App extends Component {
     this.setState(prevState => ({ todos: prevState.todos.filter(task => task.id !== id) }));
   };
 
-  addItem = () => {
-    const item = {
-      id: shortid.generate(),
-      task: 'Learn Something',
-    };
+  addItem = task => {
+    const item = this.createTodoItem('Learn Something');
 
     this.setState(prevState => ({ todos: [...prevState.todos, item] }));
   };
 
   onToggleImportant = id => {
-    console.log('Important', id);
-    this.setState(({ important }) => {
-      return { important: !important };
+    this.setState(({ todos }) => {
+      const changeTodo = todos.filter(todo => todo.id === id);
+
+      console.log(changeTodo);
     });
   };
 
