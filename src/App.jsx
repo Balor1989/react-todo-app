@@ -16,6 +16,7 @@ class App extends Component {
       this.createTodoItem('Learn JavaScript'),
       this.createTodoItem('Learn TypeScript'),
     ],
+    search: '',
   };
 
   createTodoItem(task) {
@@ -62,20 +63,28 @@ class App extends Component {
     });
   };
 
+  searchTask = e => {
+    this.setState({ search: e.target.value });
+    console.log(e.target.value);
+  };
+
   render() {
-    const { todos } = this.state;
+    const { todos, search } = this.state;
 
     const doneCount = todos.filter(task => task.done);
+    const visibleTodos = todos.filter(todo =>
+      todo.task.toLowerCase().includes(search.toLowerCase()),
+    );
     return (
       <div className={s.todoApp}>
         <AppHeader todo={todos.length - doneCount.length} done={doneCount.length} />
         <main>
           <div className={`d-flex flex-wrap ${s.topPanel}`}>
-            <SearchPanel />
+            <SearchPanel onSearchTask={this.searchTask} />
             <StatusFilter />
           </div>
           <TodoList
-            todos={todos}
+            todos={visibleTodos}
             onDeleted={this.deleteItem}
             onToggleImportant={this.onToggleImportant}
             onToggleDone={this.onToggleDone}
