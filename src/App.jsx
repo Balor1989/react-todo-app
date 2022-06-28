@@ -78,7 +78,7 @@ class App extends Component {
     return (
       <div className={s.todoApp}>
         <AppHeader todo={todos.length - doneCount.length} done={doneCount.length} />
-        <main>
+        <main className={s.mainBox}>
           <div className={`d-flex flex-wrap ${s.topPanel}`}>
             <SearchPanel onSearchTask={this.searchTask} />
             <StatusFilter />

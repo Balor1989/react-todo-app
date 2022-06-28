@@ -1,12 +1,5 @@
 const AppFooter = () => {
-  return (
-    <footer>
-      <div>
-        <p>All rights reserved</p>
-        <span>2022</span>
-      </div>
-    </footer>
-  );
+  return <footer></footer>;
 };
 
 export default AppFooter;
