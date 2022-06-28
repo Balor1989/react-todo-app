@@ -37,26 +37,38 @@ class App extends Component {
     this.setState(prevState => ({ todos: [...prevState.todos, item] }));
   };
 
+  onToggleProperty = (array, id, propName) => {
+    const index = array.findIndex(todo => todo.id === id);
+
+    const oldTask = array[index];
+    const newTask = { ...oldTask, [propName]: !oldTask[propName] };
+
+    return [...array.slice(0, index), newTask, ...array.slice(index + 1)];
+  };
+
   onToggleImportant = id => {
     this.setState(({ todos }) => {
-      const changeTodo = todos.filter(todo => todo.id === id);
-
-      console.log(changeTodo);
+      return {
+        todos: this.onToggleProperty(todos, id, 'important'),
+      };
     });
   };
 
   onToggleDone = id => {
-    console.log('done', id);
-    this.setState(({ done }) => {
-      return { done: !done };
+    this.setState(({ todos }) => {
+      return {
+        todos: this.onToggleProperty(todos, id, 'done'),
+      };
     });
   };
 
   render() {
     const { todos } = this.state;
+
+    const doneCount = todos.filter(task => task.done);
     return (
       <div className={s.todoApp}>
-        <AppHeader todo={1} done={3} />
+        <AppHeader todo={todos.length - doneCount.length} done={doneCount.length} />
         <main>
           <div className={`d-flex ${s.topPanel}`}>
             <SearchPanel />
