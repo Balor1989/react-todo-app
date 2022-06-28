@@ -5,6 +5,8 @@ import StatusFilter from './components/StatusFilter';
 import TodoList from './components/TodoList';
 import s from './App.module.css';
 import { Component } from 'react';
+import AddButton from './components/AddButton';
+import shortid from 'shortid';
 
 class App extends Component {
   state = {
@@ -23,6 +25,14 @@ class App extends Component {
   deleteItem = id => {
     this.setState(prevState => ({ todos: prevState.todos.filter(task => task.id !== id) }));
   };
+  addItem = () => {
+    const item = {
+      id: shortid.generate(),
+      task: 'Learn Something',
+    };
+
+    this.setState(prevState => ({ todos: [...prevState.todos, item] }));
+  };
 
   render() {
     const { todos } = this.state;
@@ -35,6 +45,7 @@ class App extends Component {
             <StatusFilter />
           </div>
           <TodoList todos={todos} onDeleted={this.deleteItem} />
+          <AddButton onAddItem={this.addItem} />
         </main>
         <AppFooter />
       </div>
