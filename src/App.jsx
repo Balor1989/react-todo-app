@@ -32,7 +32,7 @@ class App extends Component {
   };
 
   addItem = task => {
-    const item = this.createTodoItem('Learn Something');
+    const item = this.createTodoItem(task);
 
     this.setState(prevState => ({ todos: [...prevState.todos, item] }));
   };
@@ -70,7 +70,7 @@ class App extends Component {
       <div className={s.todoApp}>
         <AppHeader todo={todos.length - doneCount.length} done={doneCount.length} />
         <main>
-          <div className={`d-flex ${s.topPanel}`}>
+          <div className={`d-flex flex-wrap ${s.topPanel}`}>
             <SearchPanel />
             <StatusFilter />
           </div>
