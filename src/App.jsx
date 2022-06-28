@@ -11,20 +11,26 @@ import shortid from 'shortid';
 class App extends Component {
   state = {
     todos: [
-      { id: 'id-1', task: 'Learn React' },
-      { id: 'id-2', task: 'Learn Vue' },
-      { id: 'id-3', task: 'Learn JavaScript', important: true },
-      { id: 'id-4', task: 'Learn TypeScript' },
+      this.createTodoItem('Learn React'),
+      this.createTodoItem('Learn Vue'),
+      this.createTodoItem('Learn JavaScript'),
+      this.createTodoItem('Learn TypeScript'),
     ],
   };
-  deleteContactCard = cardId => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== cardId),
-    }));
-  };
+
+  createTodoItem(task) {
+    return {
+      id: shortid.generate(),
+      task,
+      important: false,
+      done: false,
+    };
+  }
+
   deleteItem = id => {
     this.setState(prevState => ({ todos: prevState.todos.filter(task => task.id !== id) }));
   };
+
   addItem = () => {
     const item = {
       id: shortid.generate(),
@@ -32,6 +38,20 @@ class App extends Component {
     };
 
     this.setState(prevState => ({ todos: [...prevState.todos, item] }));
+  };
+
+  onToggleImportant = id => {
+    console.log('Important', id);
+    this.setState(({ important }) => {
+      return { important: !important };
+    });
+  };
+
+  onToggleDone = id => {
+    console.log('done', id);
+    this.setState(({ done }) => {
+      return { done: !done };
+    });
   };
 
   render() {
@@ -44,7 +64,12 @@ class App extends Component {
             <SearchPanel />
             <StatusFilter />
           </div>
-          <TodoList todos={todos} onDeleted={this.deleteItem} />
+          <TodoList
+            todos={todos}
+            onDeleted={this.deleteItem}
+            onToggleImportant={this.onToggleImportant}
+            onToggleDone={this.onToggleDone}
+          />
           <AddButton onAddItem={this.addItem} />
         </main>
         <AppFooter />

@@ -3,22 +3,8 @@ import { BsFillTrashFill, BsExclamationLg } from 'react-icons/bs';
 import { Component } from 'react';
 
 class TodoListItem extends Component {
-  state = { done: false, important: false };
-
-  taskHendler = () => {
-    this.setState(({ done }) => {
-      return { done: !done };
-    });
-  };
-  importantHandler = () => {
-    this.setState(({ important }) => {
-      return { important: !important };
-    });
-  };
-
   render() {
-    const { done, important } = this.state;
-    const { task, onDeletedTask } = this.props;
+    const { task, onDeletedTask, onToggleImportant, onToggleDone, done, important } = this.props;
 
     let classNames = `${s.task}`;
     if (done) {
@@ -30,14 +16,14 @@ class TodoListItem extends Component {
 
     return (
       <div className={`d-flex justify-content-between ${s.todoListItem}`}>
-        <p className={classNames} onClick={this.taskHendler}>
+        <p className={classNames} onClick={onToggleDone}>
           {task}
         </p>
         <div>
           <button
             type="button"
             className="btn btn-outline-success btn-sm float-right"
-            onClick={this.importantHandler}
+            onClick={onToggleImportant}
           >
             <BsExclamationLg />
           </button>
