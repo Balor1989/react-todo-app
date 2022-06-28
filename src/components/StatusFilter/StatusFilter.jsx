@@ -3,29 +3,29 @@
 import { Component } from 'react';
 
 class StatusFilter extends Component {
+  buttons = [
+    { name: 'all', label: 'All' },
+    { name: 'active', label: 'Active' },
+    { name: 'done', label: 'Done' },
+  ];
+
   render() {
-    const { onUseFilterButton } = this.props;
-    return (
-      <div className="btn-group">
-        <button type="button" className="btn btn-info" onClick={() => onUseFilterButton('all')}>
-          All
-        </button>
+    const { onUseFilterButton, filter } = this.props;
+    const buttons = this.buttons.map(({ name, label }) => {
+      const isActive = filter === name;
+      const clazz = isActive ? 'btn-info' : 'btn-outline-secondary';
+      return (
         <button
           type="button"
-          className="btn btn-outline-secondary"
-          onClick={() => onUseFilterButton('active')}
+          className={`btn ${clazz}`}
+          onClick={() => onUseFilterButton(name)}
+          key={name}
         >
-          Active
+          {label}
         </button>
-        <button
-          type="button"
-          className="btn btn-outline-secondary"
-          onClick={() => onUseFilterButton('done')}
-        >
-          Done
-        </button>
-      </div>
-    );
+      );
+    });
+    return buttons;
   }
 }
 

@@ -11,12 +11,16 @@ class AddButton extends Component {
   };
   onFormSubmit = e => {
     e.preventDefault();
+    if (!this.state.task) {
+      return;
+    }
     this.props.onAddItem(this.state.task);
     this.setState({
       task: '',
     });
   };
   render() {
+    const isActive = this.state.task !== '' ? 'btn-info' : 'btn-outline-secondary';
     return (
       <form className={s.addBox} onSubmit={this.onFormSubmit}>
         <input
@@ -26,7 +30,7 @@ class AddButton extends Component {
           onChange={this.onTaskChange}
           placeholder="write the name of the task"
         />
-        <button type="submit" className={`btn btn-info ${s.borderBtn}`}>
+        <button type="submit" className={`btn ${isActive} ${s.borderBtn}`}>
           Add Task
         </button>
       </form>

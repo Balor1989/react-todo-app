@@ -17,7 +17,7 @@ class App extends Component {
       this.createTodoItem('Learn TypeScript'),
     ],
     search: '',
-    filter: '',
+    filter: 'all',
   };
 
   createTodoItem(task) {
@@ -101,7 +101,7 @@ class App extends Component {
         <main className={s.mainBox}>
           <div className={`d-flex flex-wrap ${s.topPanel}`}>
             <SearchPanel onSearchTask={this.searchTask} />
-            <StatusFilter onUseFilterButton={this.useFilterButton} />
+            <StatusFilter onUseFilterButton={this.useFilterButton} filter={filter} />
           </div>
           <TodoList
             todos={visibleTodos}
